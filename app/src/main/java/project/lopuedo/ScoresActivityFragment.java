@@ -37,10 +37,10 @@ public class ScoresActivityFragment extends Fragment {
         };
         List<String> list_score=new ArrayList<>();
         list_score= Arrays.asList(data);
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        ArrayAdapter<String> adapter= new ArrayAdapter<>(getActivity(),R.layout.fragment_scores,R.id.score_points,list_score);
-        ListView vista=(ListView) rootView.findViewById(R.id.list_score);
-        vista.setAdapter(adapter);
+        View rootView = inflater.inflate(R.layout.fragment_scores, container, false);
+        ArrayAdapter<String> adapter= new ArrayAdapter<>(getActivity(),R.layout.list_item_score,R.id.score_points,list_score);
+        ListView vist=(ListView) rootView.findViewById(R.id.list_score);
+        vist.setAdapter(adapter);
 
         return rootView;
     }
