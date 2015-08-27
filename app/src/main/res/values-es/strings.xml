@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">loPuedo</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="hello_world">¡Hola, Mundo!</string>
+    <string name="title_activity_main"></string>
+    <string name="title_activity_scores">Marcador</string>
+    <string name="title_activity_splash"></string>
+    <string name="title_activity_round"></string>
+</resources>
