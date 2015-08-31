@@ -1,6 +1,8 @@
 package project.lopuedo.view.fragments;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,9 +18,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import project.lopuedo.R;
+import project.lopuedo.model.MatchModel;
 import project.lopuedo.model.Player;
 import project.lopuedo.presenter.ScoresPresenter;
 import project.lopuedo.view.activities.ScoresActivity;
+import project.lopuedo.view.adapters.ScoreAdapter;
 import project.lopuedo.view.interfaces.IScoresView;
 
 /**
@@ -38,26 +42,17 @@ public class ScoresActivityFragment extends Fragment  implements IScoresView, Vi
                              Bundle savedInstanceState) {
 
         mScoresPresenter = new ScoresPresenter();
-        mNextButton.setOnClickListener(this);
-
-        // TODO Quitar mierdas de Dani
-        String[] data={
-                "Today - Sunny - 88/66",
-                "Tomorrow - Cloudy - 88/66",
-                "Weds - Sunny - 88/66",
-                "Thurs - Sunny - 88/66",
-                "Fri - Sunny - 88/66",
-                "Sat - Sunny - 88/66",
-                "Sun - Sunny - 88/66",
-                "Mon - Sunny - 88/66"
-
-        };
-        List<String> list_score= new ArrayList<String>();
-        list_score= Arrays.asList(data);
         View rootView = inflater.inflate(R.layout.fragment_scores, container, false);
-        ArrayAdapter<String> adapter= new ArrayAdapter<>(getActivity(),R.layout.list_item_score,R.id.score_points,list_score);
-        ListView vist=(ListView) rootView.findViewById(R.id.list_score);
-        vist.setAdapter(adapter);
+        mList=(ListView) rootView.findViewById(R.id.list_score);
+        mNextButton.setOnClickListener(this);  //ESTA LINEAAAA PETAAAAAAAAAAAA
+
+        MatchModel mm = new MatchModel();
+        Cursor round=mm.getRound(getContext());
+         int s = round.getCount();
+        ScoreAdapter adapter = createListAdapter(round);
+        createList(adapter);
+
+
 
         return rootView;
     }
@@ -74,15 +69,16 @@ public class ScoresActivityFragment extends Fragment  implements IScoresView, Vi
     }
 
     @Override
-    public ListAdapter createListAdapter(List<Player> scores) {
-        // TODO Dani, haz tu magia
-        return null;
+    public ScoreAdapter createListAdapter(Cursor c) {
+        return new ScoreAdapter(getContext(),c, R.layout.list_item_score);
     }
 
-    @Override
-    public void setScores(String[] names, String[] scores) {
-        // TODO Aqui actualizar la lista
-    }
+
+
+//    @Override
+//    public void setScores(String[] names, String[] scores) {
+//        // TODO Aqui actualizar la lista
+//    }
 
     @Override
     public void showNextButton() {

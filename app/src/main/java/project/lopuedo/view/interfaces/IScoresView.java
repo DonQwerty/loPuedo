@@ -1,19 +1,22 @@
 package project.lopuedo.view.interfaces;
 
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.widget.ListAdapter;
 
 import java.util.List;
 
 import project.lopuedo.model.Player;
+import project.lopuedo.view.adapters.ScoreAdapter;
 
 public interface IScoresView {
 
     void createList(ListAdapter scores);
 
-    ListAdapter createListAdapter(List<Player> scores);
+    ScoreAdapter createListAdapter(Cursor c);
 
-    void setScores (String[] names, String[] scores);
+    //void setScores (String[] names, String[] scores);
 
     void showNextButton();
 
