@@ -44,11 +44,10 @@ public class ScoresActivityFragment extends Fragment  implements IScoresView, Vi
         mScoresPresenter = new ScoresPresenter();
         View rootView = inflater.inflate(R.layout.fragment_scores, container, false);
         mList=(ListView) rootView.findViewById(R.id.list_score);
-        mNextButton.setOnClickListener(this);  //ESTA LINEAAAA PETAAAAAAAAAAAA
+        //mNextButton.setOnClickListener(this);  //ESTA LINEAAAA PETAAAAAAAAAAAA
 
         MatchModel mm = new MatchModel();
         Cursor round=mm.getRound(getContext());
-         int s = round.getCount();
         ScoreAdapter adapter = createListAdapter(round);
         createList(adapter);
 
