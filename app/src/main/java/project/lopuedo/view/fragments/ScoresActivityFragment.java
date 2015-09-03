@@ -21,6 +21,7 @@ import project.lopuedo.R;
 import project.lopuedo.model.MatchModel;
 import project.lopuedo.model.Player;
 import project.lopuedo.presenter.ScoresPresenter;
+import project.lopuedo.view.activities.RoundActivity;
 import project.lopuedo.view.activities.ScoresActivity;
 import project.lopuedo.view.adapters.ScoreAdapter;
 import project.lopuedo.view.interfaces.IScoresView;
@@ -42,9 +43,11 @@ public class ScoresActivityFragment extends Fragment  implements IScoresView, Vi
                              Bundle savedInstanceState) {
 
         mScoresPresenter = new ScoresPresenter();
+        mScoresPresenter.onCreate(this);
         View rootView = inflater.inflate(R.layout.fragment_scores, container, false);
         mList=(ListView) rootView.findViewById(R.id.list_score);
-        //mNextButton.setOnClickListener(this);  //ESTA LINEAAAA PETAAAAAAAAAAAA
+        mNextButton = (Button) rootView.findViewById(R.id.button_siguiente);
+        mNextButton.setOnClickListener(this);
 
         MatchModel mm = new MatchModel();
         Cursor round=mm.getRound(getContext());
@@ -106,7 +109,7 @@ public class ScoresActivityFragment extends Fragment  implements IScoresView, Vi
 
     @Override
     public void goToRoundActivity(int match_id) {
-        Intent intent = new Intent(getActivity(), ScoresActivity.class);
+        Intent intent = new Intent(getActivity(), RoundActivity.class);
         intent.putExtra("MATCH", match_id);
         startActivity(intent);
     }
