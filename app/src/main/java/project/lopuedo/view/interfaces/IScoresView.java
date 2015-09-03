@@ -16,7 +16,8 @@ public interface IScoresView {
 
     ScoreAdapter createListAdapter(Cursor c);
 
-    //void setScores (String[] names, String[] scores);
+    // TODO Probablemente no deberia recibir dos String[]
+    // void setScores (String[] names, String[] scores);
 
     void showNextButton();
 
@@ -25,6 +26,8 @@ public interface IScoresView {
     void showFinishButton();
 
     void hideFinishButton();
+
+    void showList();
 
     void goToRoundActivity(int match_id);
 }

@@ -17,12 +17,6 @@ public class ScoresPresenter implements IScoresPresenter{
         mMatchModel.setMatchId(0);
     }
 
-
-    @Override
-    public void showList() {
-
-    }
-
     @Override
     public void goToRoundActivity() {
         mScoresView.goToRoundActivity(mMatchModel.getMatchId());

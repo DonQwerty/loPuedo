@@ -85,6 +85,11 @@ public class ScoresActivityFragment extends Fragment  implements IScoresView, Vi
     }
 
     @Override
+    public void showList() {
+        mList.setVisibility(View.VISIBLE);
+    }
+
+    @Override
     public void hideNextButton() {
         mNextButton.setVisibility(View.GONE);
     }
