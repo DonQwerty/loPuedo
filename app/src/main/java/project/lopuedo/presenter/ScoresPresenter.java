@@ -10,8 +10,8 @@ public class ScoresPresenter implements IScoresPresenter{
     private IScoresView mScoresView;
     private IMatchModel mMatchModel;
 
-    public void onCreate (IScoresView View) {
-        mScoresView = View;
+    public void onCreate (IScoresView view) {
+        mScoresView = view;
         mMatchModel = new MatchModel();
         // TODO Obtener del intent y pasar el ID
         mMatchModel.setMatchId(0);
