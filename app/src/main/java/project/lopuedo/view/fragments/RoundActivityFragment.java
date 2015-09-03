@@ -33,6 +33,7 @@ public class RoundActivityFragment extends Fragment implements IRoundView, View.
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mRoundPresenter = new RoundPresenter();
+        mRoundPresenter.onCreate(this);
         View rootView = inflater.inflate(R.layout.fragment_scores, container, false);
         mList=(ListView) rootView.findViewById(R.id.list_score);
         mNextButton = (Button) rootView.findViewById(R.id.button_siguiente);
