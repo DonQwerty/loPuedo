@@ -3,6 +3,7 @@ package project.lopuedo.view.interfaces;
 import android.database.Cursor;
 import android.widget.ListAdapter;
 
+import project.lopuedo.view.adapters.EditAdapter;
 import project.lopuedo.view.adapters.ScoreAdapter;
 
 public interface IRoundView {
@@ -10,7 +11,7 @@ public interface IRoundView {
     void createList(ListAdapter scores);
 
     //TODO Quizá te haga falta otro adapter
-    ScoreAdapter createListAdapter(Cursor c);
+    EditAdapter createListAdapter(Cursor c);
 
     // TODO Probablemente no deberian devolver estas estructuras
     String[] getPlayers();
