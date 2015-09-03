@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="+"
-        android:id="@+id/button_editar"
+        android:id="@+id/button_edit"
         android:clickable="true"
         android:layout_weight="1"/>
 </LinearLayout>

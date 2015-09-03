@@ -22,5 +22,5 @@ public interface IRoundView {
     //      o recibir un tipo Player, eso si que sería genial
     void setScores(String[] players, String[] scores);
 
-    void goToScoresActivity();
+    void goToScoresActivity(int match_id);
 }
