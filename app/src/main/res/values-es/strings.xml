@@ -3,7 +3,7 @@
     <string name="app_name">loPuedo</string>
     <string name="action_settings">Ajustes</string>
     <string name="hello_world">¡Hola, Mundo!</string>
-    <string name="title_activity_main">loPuedo</string>
+    <string name="title_activity_main">Principal</string>
     <string name="title_activity_scores">Marcador</string>
     <string name="title_activity_round">Ronda</string>
     <string name="main_button_start">Empezar</string>
