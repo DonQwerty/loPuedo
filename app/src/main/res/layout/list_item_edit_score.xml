@@ -22,13 +22,13 @@
         android:gravity="center_vertical"
         android:minHeight="?android:attr/listPreferredItemHeight"
         android:id="@+id/list_item_score"
-        android:text="-"
+        android:text="@string/score_no_points"
         android:layout_weight="0.5"
         />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="+"
+        android:text="@string/round_score_add"
         android:id="@+id/button_edit"
         android:clickable="true"
         android:layout_weight="1"/>

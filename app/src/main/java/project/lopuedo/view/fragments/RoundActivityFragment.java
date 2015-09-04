@@ -2,12 +2,11 @@ package project.lopuedo.view.fragments;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -19,14 +18,18 @@ import project.lopuedo.view.adapters.EditAdapter;
 import project.lopuedo.view.interfaces.IRoundView;
 
 /**
- * A placeholder fragment containing a simple view.
+ * Fragment to set each round scores.
  */
-public class RoundActivityFragment extends Fragment implements IRoundView, View.OnClickListener {
+public class RoundActivityFragment extends Fragment implements IRoundView {
     private RoundPresenter mRoundPresenter;
     private ListView mList;
-    private Button mNextButton;
 
     public RoundActivityFragment() {
+    }
+
+    public static RoundActivityFragment newInstance() {
+        RoundActivityFragment instance = new RoundActivityFragment();
+        return instance;
     }
 
     @Override
@@ -36,16 +39,11 @@ public class RoundActivityFragment extends Fragment implements IRoundView, View.
         mRoundPresenter.onCreate(this);
         View rootView = inflater.inflate(R.layout.fragment_scores, container, false);
         mList=(ListView) rootView.findViewById(R.id.list_score);
-        mNextButton = (Button) rootView.findViewById(R.id.button_siguiente);
-
-        mNextButton.setOnClickListener(this);
 
         MatchModel mm = new MatchModel();
-        Cursor round=mm.getRound(getContext());
+        Cursor round=mm.getRound(getActivity());
         EditAdapter adapter = createListAdapter(round);
         createList(adapter);
-
-
 
         return rootView;
     }
@@ -57,7 +55,7 @@ public class RoundActivityFragment extends Fragment implements IRoundView, View.
 
     @Override
     public EditAdapter createListAdapter(Cursor c) {
-        return new EditAdapter(getContext(),c, R.layout.list_item_edit_score);
+        return new EditAdapter(getActivity(),c, R.layout.list_item_edit_score);
     }
 
     @Override
@@ -80,10 +78,5 @@ public class RoundActivityFragment extends Fragment implements IRoundView, View.
         Intent intent = new Intent(getActivity(), ScoresActivity.class);
         intent.putExtra("MATCH", match_id);
         startActivity(intent);
-    }
-
-    @Override
-    public void onClick(View v) {
-        mRoundPresenter.goToScoresActivity();
     }
 }

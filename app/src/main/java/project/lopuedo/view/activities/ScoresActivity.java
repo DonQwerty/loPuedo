@@ -4,15 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ListAdapter;
-
-import java.util.List;
 
 import project.lopuedo.R;
-import project.lopuedo.model.Player;
-import project.lopuedo.presenter.ScoresPresenter;
 
 public class ScoresActivity extends AppCompatActivity {
 

@@ -4,7 +4,6 @@ import android.database.Cursor;
 import android.widget.ListAdapter;
 
 import project.lopuedo.view.adapters.EditAdapter;
-import project.lopuedo.view.adapters.ScoreAdapter;
 
 public interface IRoundView {
 

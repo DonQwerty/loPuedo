@@ -6,14 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import project.lopuedo.R;
 
-/**
- * Created by daniel on 31/08/15.
- */
 public class EditAdapter extends CursorAdapter {
 
     public EditAdapter(Context context, Cursor c, int flags) {
