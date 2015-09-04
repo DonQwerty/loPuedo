@@ -1,6 +1,6 @@
 package project.lopuedo.view.fragments;
 
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +14,11 @@ import project.lopuedo.R;
 public class MainActivityFragment extends Fragment {
 
     public MainActivityFragment() {
+    }
+
+    public static MainActivityFragment newInstance() {
+        MainActivityFragment fragment = new MainActivityFragment();
+        return fragment;
     }
 
     @Override

@@ -6,4 +6,7 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_scores">ScoresActivity</string>
     <string name="title_activity_round">RoundActivity</string>
+
+    <!-- Main Activity -->
+    <string name="main_button_start">Start</string>
 </resources>

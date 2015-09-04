@@ -2,40 +2,34 @@ package project.lopuedo.view.fragments;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import project.lopuedo.R;
 import project.lopuedo.model.MatchModel;
-import project.lopuedo.model.Player;
 import project.lopuedo.presenter.ScoresPresenter;
 import project.lopuedo.view.activities.RoundActivity;
-import project.lopuedo.view.activities.ScoresActivity;
 import project.lopuedo.view.adapters.ScoreAdapter;
 import project.lopuedo.view.interfaces.IScoresView;
 
 /**
- * A placeholder fragment containing a simple view.
+ * Fragment to display each round scores.
  */
-public class ScoresActivityFragment extends Fragment  implements IScoresView, View.OnClickListener {
+public class ScoresActivityFragment extends Fragment  implements IScoresView {
 
-    private Button mNextButton;
     private ScoresPresenter mScoresPresenter;
     private ListView mList;
 
     public ScoresActivityFragment() {
+    }
+
+    public static ScoresActivityFragment newInstance() {
+        ScoresActivityFragment instance = new ScoresActivityFragment();
+        return instance;
     }
 
     @Override
@@ -46,11 +40,9 @@ public class ScoresActivityFragment extends Fragment  implements IScoresView, Vi
         mScoresPresenter.onCreate(this);
         View rootView = inflater.inflate(R.layout.fragment_scores, container, false);
         mList=(ListView) rootView.findViewById(R.id.list_score);
-        mNextButton = (Button) rootView.findViewById(R.id.button_siguiente);
-        mNextButton.setOnClickListener(this);
 
         MatchModel mm = new MatchModel();
-        Cursor round=mm.getRound(getContext());
+        Cursor round=mm.getRound(getActivity());
         ScoreAdapter adapter = createListAdapter(round);
         createList(adapter);
 
@@ -60,19 +52,13 @@ public class ScoresActivityFragment extends Fragment  implements IScoresView, Vi
     }
 
     @Override
-    public void onClick(View v) {
-        // Change to scores assignment
-        mScoresPresenter.goToRoundActivity();
-    }
-
-    @Override
     public void createList(ListAdapter adapter) {
         mList.setAdapter(adapter);
     }
 
     @Override
     public ScoreAdapter createListAdapter(Cursor c) {
-        return new ScoreAdapter(getContext(),c, R.layout.list_item_score);
+        return new ScoreAdapter(getActivity(),c, R.layout.list_item_score);
     }
 
 
@@ -84,7 +70,7 @@ public class ScoresActivityFragment extends Fragment  implements IScoresView, Vi
 
     @Override
     public void showNextButton() {
-        mNextButton.setVisibility(View.VISIBLE);
+
     }
 
     @Override
@@ -94,7 +80,7 @@ public class ScoresActivityFragment extends Fragment  implements IScoresView, Vi
 
     @Override
     public void hideNextButton() {
-        mNextButton.setVisibility(View.GONE);
+
     }
 
     @Override

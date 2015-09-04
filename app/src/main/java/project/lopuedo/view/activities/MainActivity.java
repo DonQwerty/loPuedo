@@ -1,20 +1,34 @@
 package project.lopuedo.view.activities;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 
 import project.lopuedo.R;
+import project.lopuedo.view.fragments.MainActivityFragment;
+import project.lopuedo.view.fragments.RoundActivityFragment;
+import project.lopuedo.view.fragments.ScoresActivityFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private Button mMainButton;
+    private int state;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getFragmentManager().beginTransaction()
+                .add(R.id.fragment_container, MainActivityFragment.newInstance()).commit();
+        state = 0;
+        mMainButton = (Button) findViewById(R.id.button_main);
+        mMainButton.setOnClickListener(this);
     }
 
 
@@ -38,5 +52,31 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        Fragment newFragment;
+
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right);
+
+        // To avoid compilation error
+        newFragment = new MainActivityFragment();
+
+        // TODO Esto nunca vuelve a MainActivityFragment.
+        switch (state) {
+            // to Round
+            case 0:
+                newFragment = RoundActivityFragment.newInstance();
+                break;
+            // to Scores
+            case 1:
+                newFragment = ScoresActivityFragment.newInstance();
+                break;
+        }
+        ft.replace(R.id.fragment_container, newFragment);
+        ft.commit();
+        state = (state +1) % 2;
     }
 }
