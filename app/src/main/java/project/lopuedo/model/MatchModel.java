@@ -7,7 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class  MatchModel implements IMatchModel {
-    private int matchId;
+    // TODO Utilizar la base de datos para crear el matchId
+    private int matchId = 0;
 
     @Override
     public void setMatchId(int id) {

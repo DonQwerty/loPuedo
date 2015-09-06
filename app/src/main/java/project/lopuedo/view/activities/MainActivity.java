@@ -2,8 +2,8 @@ package project.lopuedo.view.activities;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button mMainButton;
     private int state;
+    // TODO Set matchId properly (using DB)
+    private int matchId = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,13 +70,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (state) {
             // to Round
             case 0:
-                newFragment = RoundActivityFragment.newInstance();
+                newFragment = RoundActivityFragment.newInstance(matchId);
                 break;
             // to Scores
             case 1:
-                newFragment = ScoresActivityFragment.newInstance();
+                newFragment = ScoresActivityFragment.newInstance(matchId);
                 break;
         }
+
         ft.replace(R.id.fragment_container, newFragment);
         ft.commit();
         state = (state +1) % 2;

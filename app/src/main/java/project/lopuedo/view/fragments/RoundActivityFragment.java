@@ -1,8 +1,7 @@
 package project.lopuedo.view.fragments;
 
-import android.content.Intent;
-import android.database.Cursor;
 import android.app.Fragment;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +12,6 @@ import android.widget.ListView;
 import project.lopuedo.R;
 import project.lopuedo.model.MatchModel;
 import project.lopuedo.presenter.RoundPresenter;
-import project.lopuedo.view.activities.ScoresActivity;
 import project.lopuedo.view.adapters.EditAdapter;
 import project.lopuedo.view.interfaces.IRoundView;
 
@@ -23,20 +21,29 @@ import project.lopuedo.view.interfaces.IRoundView;
 public class RoundActivityFragment extends Fragment implements IRoundView {
     private RoundPresenter mRoundPresenter;
     private ListView mList;
+    private int matchId;
 
     public RoundActivityFragment() {
     }
 
-    public static RoundActivityFragment newInstance() {
+    public static RoundActivityFragment newInstance(int matchId) {
         RoundActivityFragment instance = new RoundActivityFragment();
+        Bundle args = new Bundle();
+        args.putInt("matchId", matchId);
+        instance.setArguments(args);
         return instance;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        // Get matchId
+        Bundle bundle = getArguments();
+        matchId = bundle.getInt("matchId");
+
         mRoundPresenter = new RoundPresenter();
-        mRoundPresenter.onCreate(this);
+        mRoundPresenter.onCreate(this, matchId);
         View rootView = inflater.inflate(R.layout.fragment_scores, container, false);
         mList=(ListView) rootView.findViewById(R.id.list_score);
 
@@ -71,12 +78,5 @@ public class RoundActivityFragment extends Fragment implements IRoundView {
     @Override
     public void setScores(String[] players, String[] scores) {
 
-    }
-
-    @Override
-    public void goToScoresActivity(int match_id) {
-        Intent intent = new Intent(getActivity(), ScoresActivity.class);
-        intent.putExtra("MATCH", match_id);
-        startActivity(intent);
     }
 }
