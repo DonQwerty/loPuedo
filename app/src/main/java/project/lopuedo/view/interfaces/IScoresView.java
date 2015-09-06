@@ -25,5 +25,4 @@ public interface IScoresView {
 
     void showList();
 
-    void goToRoundActivity(int match_id);
 }

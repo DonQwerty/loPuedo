@@ -10,17 +10,12 @@ public class ScoresPresenter implements IScoresPresenter{
     private IScoresView mScoresView;
     private IMatchModel mMatchModel;
 
-    public void onCreate (IScoresView view) {
+    public void onCreate (IScoresView view, int matchID) {
         mScoresView = view;
         mMatchModel = new MatchModel();
-        // TODO Obtener del intent y pasar el ID
-        mMatchModel.setMatchId(0);
+        mMatchModel.setMatchId(matchID);
     }
 
-    @Override
-    public void goToRoundActivity() {
-        mScoresView.goToRoundActivity(mMatchModel.getMatchId());
-    }
 
     public void loadScores () {
 

@@ -8,11 +8,10 @@ public class RoundPresenter implements IRoundPresenter {
     private IRoundView mRoundView;
     private IMatchModel mMatchModel;
     @Override
-    public void onCreate(IRoundView view) {
+    public void onCreate(IRoundView view, int matchID) {
         mRoundView = view;
         mMatchModel = new MatchModel();
-        // TODO Obtener del intent y pasar el ID
-        mMatchModel.setMatchId(0);
+        mMatchModel.setMatchId(matchID);
     }
 
     @Override
@@ -23,10 +22,5 @@ public class RoundPresenter implements IRoundPresenter {
     @Override
     public void setScores() {
 
-    }
-
-    @Override
-    public void goToScoresActivity() {
-        mRoundView.goToScoresActivity(mMatchModel.getMatchId());
     }
 }
