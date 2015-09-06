@@ -23,6 +23,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:textSize="22sp"
         style="@style/Base.Widget.AppCompat.ButtonBar" />
 
 
