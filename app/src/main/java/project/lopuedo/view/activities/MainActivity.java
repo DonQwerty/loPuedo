@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 
 import project.lopuedo.R;
+import project.lopuedo.model.MatchModel;
 import project.lopuedo.view.fragments.MainActivityFragment;
 import project.lopuedo.view.fragments.RoundActivityFragment;
 import project.lopuedo.view.fragments.ScoresActivityFragment;
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int state;
     // TODO Set matchId properly (using DB)
     private int matchId = 0;
+    private int round=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,16 +72,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (state) {
             // to Round
             case 0:
-                newFragment = RoundActivityFragment.newInstance(matchId);
+                MatchModel mm = new MatchModel();
+                matchId=mm.getMatchid(getApplicationContext());
+                newFragment = RoundActivityFragment.newInstance(matchId,round);
+                state=1;
                 break;
             // to Scores
             case 1:
-                newFragment = ScoresActivityFragment.newInstance(matchId);
+                round++;
+                newFragment = RoundActivityFragment.newInstance(matchId,round);
+                break;
+            case 2:
+                newFragment = ScoresActivityFragment.newInstance(matchId,round);
                 break;
         }
 
         ft.replace(R.id.fragment_container, newFragment);
         ft.commit();
-        state = (state +1) % 2;
+
+        state = ((state) % 2)+1;
     }
 }

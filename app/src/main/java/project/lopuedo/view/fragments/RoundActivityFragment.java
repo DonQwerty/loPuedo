@@ -22,14 +22,16 @@ public class RoundActivityFragment extends Fragment implements IRoundView {
     private RoundPresenter mRoundPresenter;
     private ListView mList;
     private int matchId;
+    private int round;
 
     public RoundActivityFragment() {
     }
 
-    public static RoundActivityFragment newInstance(int matchId) {
+    public static RoundActivityFragment newInstance(int matchId,int round) {
         RoundActivityFragment instance = new RoundActivityFragment();
         Bundle args = new Bundle();
         args.putInt("matchId", matchId);
+        args.putInt("round", round);
         instance.setArguments(args);
         return instance;
     }
@@ -41,6 +43,7 @@ public class RoundActivityFragment extends Fragment implements IRoundView {
         // Get matchId
         Bundle bundle = getArguments();
         matchId = bundle.getInt("matchId");
+        round = bundle.getInt("round");
 
         mRoundPresenter = new RoundPresenter();
         mRoundPresenter.onCreate(this, matchId);
@@ -48,7 +51,7 @@ public class RoundActivityFragment extends Fragment implements IRoundView {
         mList=(ListView) rootView.findViewById(R.id.list_score);
 
         MatchModel mm = new MatchModel();
-        Cursor round=mm.getRound(getActivity());
+        Cursor round=mm.getRound(getActivity(),matchId);
         EditAdapter adapter = createListAdapter(round);
         createList(adapter);
 

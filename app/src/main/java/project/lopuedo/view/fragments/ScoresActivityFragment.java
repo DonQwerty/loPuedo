@@ -23,14 +23,16 @@ public class ScoresActivityFragment extends Fragment  implements IScoresView {
     private ScoresPresenter mScoresPresenter;
     private ListView mList;
     private int matchId;
+    private int round;
 
     public ScoresActivityFragment() {
     }
 
-    public static ScoresActivityFragment newInstance(int matchId) {
+    public static ScoresActivityFragment newInstance(int matchId,int round) {
         ScoresActivityFragment instance = new ScoresActivityFragment();
         Bundle args = new Bundle();
         args.putInt("matchId", matchId);
+        args.putInt("round", round);
         instance.setArguments(args);
         return instance;
     }
@@ -42,6 +44,9 @@ public class ScoresActivityFragment extends Fragment  implements IScoresView {
         // Get matchId
         Bundle bundle = getArguments();
         matchId = bundle.getInt("matchId");
+        round = bundle.getInt("round");
+        /////Estas funciones van mientras no haya el de añadir puntuaciones
+
 
         mScoresPresenter = new ScoresPresenter();
         mScoresPresenter.onCreate(this, matchId);
@@ -49,7 +54,7 @@ public class ScoresActivityFragment extends Fragment  implements IScoresView {
         mList=(ListView) rootView.findViewById(R.id.list_score);
 
         MatchModel mm = new MatchModel();
-        Cursor round=mm.getRound(getActivity());
+        Cursor round=mm.getRound(getActivity(),matchId);
         ScoreAdapter adapter = createListAdapter(round);
         createList(adapter);
 

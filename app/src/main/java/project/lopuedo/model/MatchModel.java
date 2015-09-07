@@ -30,10 +30,25 @@ public class  MatchModel implements IMatchModel {
         return dbHelper.getWritableDatabase();
     }
 
-    public Cursor getRound(Context context){
+    public Cursor getRound(Context context,int id){
         SQLiteDatabase db=getScoreDatabase(context);
-        return db.query("score", null, null, null, null, null, null);
+        return db.query("score", null, "round=" + 1, null, null, null, null);
     }
+
+    public int getMatchid(Context context){
+        SQLiteDatabase db=getScoreDatabase(context);
+        Cursor cursor = db.query("score", null, "_id", null, null, null, "_id DESC", "1");
+        if(cursor.moveToFirst())
+            return cursor.getInt(0)+1;
+        else
+            return 1;
+
+    }
+    public void updatePlayer(Context context,int id, int round,String player, int score){
+        SQLiteDatabase db=getScoreDatabase(context);
+        db.execSQL("INSERT INTO score VALUES ("+id+","+round+",'"+player+"',"+score+");");
+    }
+
 
     public static class ScoreOpenHelper extends SQLiteOpenHelper {
 
@@ -50,13 +65,15 @@ public class  MatchModel implements IMatchModel {
         @Override
         public void onCreate(SQLiteDatabase db) {
             db.execSQL(GAME_TABLE_CREATE);
-            db.execSQL("INSERT INTO "+GAME_TABLE_NAME+" VALUES (1,1,'Pedro',33);");
-            db.execSQL("INSERT INTO "+GAME_TABLE_NAME+" VALUES (2,1,'Juan',22);");
+
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
+        }
+        public String getGameTableName(){
+            return GAME_TABLE_NAME;
         }
     }
 }
