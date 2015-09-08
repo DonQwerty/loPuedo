@@ -1,6 +1,7 @@
 package project.lopuedo.model;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -30,9 +31,9 @@ public class  MatchModel implements IMatchModel {
         return dbHelper.getWritableDatabase();
     }
 
-    public Cursor getRound(Context context,int id){
+    public Cursor getRound(Context context,int id,int round){
         SQLiteDatabase db=getScoreDatabase(context);
-        return db.query("score", null, "round=" + 1, null, null, null, null);
+        return db.query("score", null, "round=" + round+" and _id="+id, null, null, null, null);
     }
 
     public int getMatchid(Context context){
@@ -47,6 +48,12 @@ public class  MatchModel implements IMatchModel {
     public void updatePlayer(Context context,int id, int round,String player, int score){
         SQLiteDatabase db=getScoreDatabase(context);
         db.execSQL("INSERT INTO score VALUES ("+id+","+round+",'"+player+"',"+score+");");
+    }
+
+    public Cursor getTotalScore(Context context, int matchId, int round) {
+        SQLiteDatabase db=getScoreDatabase(context);
+        return db.query("score", new String[]{"_id ,player","SUM(score)"}, "_id=" + matchId, null, "player,_id", null, null);
+
     }
 
 

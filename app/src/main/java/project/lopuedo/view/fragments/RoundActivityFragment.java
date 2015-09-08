@@ -44,15 +44,17 @@ public class RoundActivityFragment extends Fragment implements IRoundView {
         Bundle bundle = getArguments();
         matchId = bundle.getInt("matchId");
         round = bundle.getInt("round");
-
+        MatchModel mm = new MatchModel();
+        mm.updatePlayer(getActivity(),matchId,round,"Pedro",15);
+        mm.updatePlayer(getActivity(),matchId,round,"Juan",-10);
         mRoundPresenter = new RoundPresenter();
         mRoundPresenter.onCreate(this, matchId);
         View rootView = inflater.inflate(R.layout.fragment_scores, container, false);
         mList=(ListView) rootView.findViewById(R.id.list_score);
 
-        MatchModel mm = new MatchModel();
-        Cursor round=mm.getRound(getActivity(),matchId);
-        EditAdapter adapter = createListAdapter(round);
+
+        Cursor scores=mm.getRound(getActivity(),matchId,round);
+        EditAdapter adapter = createListAdapter(scores);
         createList(adapter);
 
         return rootView;

@@ -27,9 +27,9 @@ public class ScoreAdapter extends CursorAdapter {
 //        iv.setImageResource(R.drawable.ic_launcher);
 
         TextView name = (TextView) view.findViewById(R.id.list_item_name);
-        name.setText(cursor.getString(2));
+        name.setText(cursor.getString(1));
         TextView sco = (TextView) view.findViewById(R.id.list_item_score);
-        sco.setText(cursor.getString(3));
+        sco.setText(cursor.getString(2));
 
     }
 }
