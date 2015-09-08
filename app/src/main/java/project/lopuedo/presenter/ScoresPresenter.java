@@ -16,11 +16,6 @@ public class ScoresPresenter implements IScoresPresenter{
         mMatchModel.setMatchId(matchID);
     }
 
-
-    public void loadScores () {
-
-    }
-
     public boolean isFinished() {
         return mMatchModel.isFinished();
     }
