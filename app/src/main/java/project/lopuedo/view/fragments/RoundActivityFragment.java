@@ -22,6 +22,7 @@ import project.lopuedo.view.interfaces.IRoundView;
 public class RoundActivityFragment extends Fragment implements IRoundView {
     private RoundPresenter mRoundPresenter;
     private ListView mList;
+    private Cursor scores;
     private int matchId;
     private int round;
 
@@ -54,7 +55,7 @@ public class RoundActivityFragment extends Fragment implements IRoundView {
         mList=(ListView) rootView.findViewById(R.id.list_score);
 
 
-        Cursor scores=mm.getRound(getActivity(),matchId,round);
+        scores=mm.getRound(getActivity(),matchId,round);
         EditAdapter adapter = createListAdapter(scores);
         createList(adapter);
 
@@ -73,8 +74,10 @@ public class RoundActivityFragment extends Fragment implements IRoundView {
 
     @Override
     public String[] getPlayers() {
+
         String holi = mList.getAdapter().getItem(0).toString();
         Log.d("holi", holi);
+
         return new String[0];
     }
 
