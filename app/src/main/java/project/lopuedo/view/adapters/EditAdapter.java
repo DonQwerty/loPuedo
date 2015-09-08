@@ -28,7 +28,7 @@ public class EditAdapter extends CursorAdapter {
     public View newView(Context ctx, Cursor cursor, ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(ctx);
         View v = inflater.inflate(R.layout.list_item_edit_score,parent,false);
-        bindView(v,context,cursor);
+        //bindView(v,context,cursor);
         return v;
     }
 
@@ -38,7 +38,7 @@ public class EditAdapter extends CursorAdapter {
         TextView name = (TextView) view.findViewById(R.id.list_item_name);
         name.setText(cursor.getString(2));
         final TextView sco = (TextView) view.findViewById(R.id.list_item_score);
-        sco.setText(cursor.getString(3));
+
         Button button = (Button) view.findViewById(R.id.button_edit);
 
         button.setOnClickListener(
