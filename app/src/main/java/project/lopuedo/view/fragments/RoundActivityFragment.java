@@ -3,12 +3,12 @@ package project.lopuedo.view.fragments;
 import android.app.Fragment;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import project.lopuedo.R;
 import project.lopuedo.model.MatchModel;
@@ -47,19 +47,30 @@ public class RoundActivityFragment extends Fragment implements IRoundView {
         matchId = bundle.getInt("matchId");
         round = bundle.getInt("round");
         MatchModel mm = new MatchModel();
-        mm.updatePlayer(getActivity(),matchId,round,"Pedro",15);
-        mm.updatePlayer(getActivity(),matchId,round,"Juan",-10);
         mRoundPresenter = new RoundPresenter();
         mRoundPresenter.onCreate(this, matchId);
+        
         View rootView = inflater.inflate(R.layout.fragment_scores, container, false);
         mList=(ListView) rootView.findViewById(R.id.list_score);
-
 
         scores=mm.getRound(getActivity(),matchId,round);
         EditAdapter adapter = createListAdapter(scores);
         createList(adapter);
 
         return rootView;
+    }
+
+    public void saveScores() {
+        int mCount = mList.getCount();
+        ListAdapter a = mList.getAdapter();
+        for (int i = 0; i < mCount; i++) {
+            View curr = a.getView(i, null, null);
+            TextView tName = (TextView) curr.findViewById(R.id.list_item_name);
+            TextView tScores = (TextView) curr.findViewById(R.id.list_item_score);
+
+            mRoundPresenter.setScore(getActivity(), round,
+                    tName.getText().toString(), Integer.parseInt(tScores.getText().toString()));
+        }
     }
 
     @Override
@@ -74,10 +85,6 @@ public class RoundActivityFragment extends Fragment implements IRoundView {
 
     @Override
     public String[] getPlayers() {
-
-        String holi = mList.getAdapter().getItem(0).toString();
-        Log.d("holi", holi);
-
         return new String[0];
     }
 

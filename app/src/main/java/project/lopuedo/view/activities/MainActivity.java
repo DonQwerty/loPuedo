@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 newFragment = RoundActivityFragment.newInstance(matchId,round);
                 break;
             case 2:
-                ((RoundActivityFragment) getFragmentManager().findFragmentByTag("FRAGMENT_MAIN")).getPlayers();
+                //((RoundActivityFragment) getFragmentManager().findFragmentByTag("FRAGMENT_MAIN")).saveScores();
                 newFragment = ScoresActivityFragment.newInstance(matchId,round);
                 break;
         }
