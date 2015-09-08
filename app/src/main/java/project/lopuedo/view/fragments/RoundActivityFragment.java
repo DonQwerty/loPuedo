@@ -3,6 +3,7 @@ package project.lopuedo.view.fragments;
 import android.app.Fragment;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,6 +73,8 @@ public class RoundActivityFragment extends Fragment implements IRoundView {
 
     @Override
     public String[] getPlayers() {
+        String holi = mList.getAdapter().getItem(0).toString();
+        Log.d("holi", holi);
         return new String[0];
     }
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <set xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- TODO Los nombres estan al reves -->
     <objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
         android:propertyName="x"
         android:valueType="floatType"

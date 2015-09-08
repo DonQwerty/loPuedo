@@ -19,9 +19,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button mMainButton;
     private int state;
-    // TODO Set matchId properly (using DB)
     private int matchId = 0;
     private int round=1;
+
+    // TODO Pasar los presenter al MainActivity, y los pasa a cada fragment en el constructor
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             // to Round
             case 0:
                 MatchModel mm = new MatchModel();
-                matchId=mm.getMatchid(getApplicationContext());
+                matchId = mm.getMatchid(getApplicationContext());
                 newFragment = RoundActivityFragment.newInstance(matchId,round);
                 state=1;
                 break;
@@ -83,11 +84,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 newFragment = RoundActivityFragment.newInstance(matchId,round);
                 break;
             case 2:
+                ((RoundActivityFragment) getFragmentManager().findFragmentByTag("FRAGMENT_MAIN")).getPlayers();
                 newFragment = ScoresActivityFragment.newInstance(matchId,round);
                 break;
         }
 
-        ft.replace(R.id.fragment_container, newFragment);
+        ft.replace(R.id.fragment_container, newFragment, "FRAGMENT_MAIN");
         ft.commit();
 
         state = ((state) % 2)+1;
