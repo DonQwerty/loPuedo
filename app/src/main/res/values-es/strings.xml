@@ -7,5 +7,6 @@
     <string name="title_activity_scores">Marcador</string>
     <string name="title_activity_round">Ronda</string>
     <string name="main_button_start">Empezar</string>
+    <string name="dialog_input_score">Introduce la puntuación:</string>
 
 </resources>

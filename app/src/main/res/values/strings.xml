@@ -12,6 +12,12 @@
     <!-- Scores Fragment -->
     <string name="score_no_points" translatable="false">-</string>
 
+    <!-- Score Dialog -->
+    <string name="button_confirm_add_score">OK</string>
+    <string name="dialog_input_score">Input score:</string>
+
     <!-- Round Fragment -->
     <string name="round_score_add" translatable="false">+</string>
+
+
 </resources>

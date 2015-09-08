@@ -6,4 +6,8 @@
     <!-- Main button -->
     <dimen name="button_corner_radius">4dp</dimen>
     <dimen name="button_layer_padding">3dp</dimen>
+
+    <!-- Score Dialog -->
+    <dimen name="dialog_horizontal_margin">10dp</dimen>
+    <dimen name="dialog_vertical_margin">10dp</dimen>
 </resources>
