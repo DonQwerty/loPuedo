@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- App Theme -->
-    <color name="primary">#8BC34A</color>
-    <color name="primary_dark">#689F38</color>
-    <color name="primary_light">#DCEDC8</color>
-    <color name="accent">#FF5252</color>
+    <color name="primary">#673AB7</color>
+    <color name="primary_dark">#512DA8</color>
+    <color name="primary_light">#D1C4E9</color>
+    <color name="accent">#FF5722</color>
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#727272</color>
     <color name="icons">#212121</color>
     <color name="divider">#B6B6B6</color>
 
     <!-- Main Button -->
-    <color name="button_main_normal">#FF5252</color>
-    <color name="button_main_pressed">#D32F2F</color>
+    <color name="button_main_normal">#FF5722</color>
+    <color name="button_main_pressed">#E64A19</color>
 </resources>
