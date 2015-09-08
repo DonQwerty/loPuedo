@@ -52,8 +52,12 @@ public class RoundActivityFragment extends Fragment implements IRoundView {
         
         View rootView = inflater.inflate(R.layout.fragment_scores, container, false);
         mList=(ListView) rootView.findViewById(R.id.list_score);
+        if(round==1){
+            mm.updatePlayer(getActivity(),matchId,0,"Pedro",10);
+            mm.updatePlayer(getActivity(),matchId,0,"Juan",-3);
+        }
+        scores=mm.getRound(getActivity(),matchId,0);
 
-        scores=mm.getRound(getActivity(),matchId,round);
         EditAdapter adapter = createListAdapter(scores);
         createList(adapter);
 
