@@ -53,8 +53,8 @@ public class RoundActivityFragment extends Fragment implements IRoundView {
         View rootView = inflater.inflate(R.layout.fragment_scores, container, false);
         mList=(ListView) rootView.findViewById(R.id.list_score);
         if(round==1){
-            mm.updatePlayer(getActivity(),matchId,0,"Pedro",-999);
-            mm.updatePlayer(getActivity(),matchId,0,"Juan",-999);
+            mm.updatePlayer(getActivity(),matchId,0,"Pedro",0);
+            mm.updatePlayer(getActivity(),matchId,0,"Juan",0);
         }
         scores=mm.getRound(getActivity(),matchId,0);
 
@@ -67,6 +67,7 @@ public class RoundActivityFragment extends Fragment implements IRoundView {
     public void saveScores() {
 
         int mCount = mList.getCount();
+
         for (int i = 0; i < mCount; i++) {
             View curr = mList.getChildAt(i);
             TextView tName = (TextView) curr.findViewById(R.id.list_item_name);
@@ -75,6 +76,7 @@ public class RoundActivityFragment extends Fragment implements IRoundView {
             mRoundPresenter.setScore(getActivity(), round,
                     tName.getText().toString(), Integer.parseInt(tScores.getText().toString()));
         }
+
     }
 
     @Override

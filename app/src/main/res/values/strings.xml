@@ -10,7 +10,7 @@
     <string name="main_button_start">Start</string>
 
     <!-- Scores Fragment -->
-    <string name="score_no_points" translatable="false">-</string>
+    <string name="score_no_points" translatable="false">0</string>
 
     <!-- Score Dialog -->
     <string name="button_confirm_add_score">OK</string>
