@@ -72,7 +72,6 @@ public class RoundActivityFragment extends Fragment implements IRoundView {
             View curr = mList.getChildAt(i);
             TextView tName = (TextView) curr.findViewById(R.id.list_item_name);
             TextView tScores = (TextView) curr.findViewById(R.id.list_item_score);
-            String cadena=tScores.getText().toString();
             mRoundPresenter.setScore(getActivity(), round,
                     tName.getText().toString(), Integer.parseInt(tScores.getText().toString()));
         }

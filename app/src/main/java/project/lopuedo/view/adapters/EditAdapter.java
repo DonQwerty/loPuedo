@@ -17,7 +17,6 @@ import project.lopuedo.R;
 public class EditAdapter extends CursorAdapter {
 
     final Context context;
-    private TextView scoreTextView;
 
     public EditAdapter(Context context, Cursor c, int flags) {
         super(context, c, flags);
@@ -27,9 +26,9 @@ public class EditAdapter extends CursorAdapter {
     @Override
     public View newView(Context ctx, Cursor cursor, ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(ctx);
-        View v = inflater.inflate(R.layout.list_item_edit_score,parent,false);
+        // View v = inflater.inflate(R.layout.list_item_edit_score,parent,false);
         //bindView(v,context,cursor);
-        return v;
+        return inflater.inflate(R.layout.list_item_edit_score,parent,false);
     }
 
     @Override
@@ -72,7 +71,6 @@ public class EditAdapter extends CursorAdapter {
                                                 dialog.cancel();
                                             }
                                         });
-
                         // create an alert dialog
                         AlertDialog alertD = alertDialogBuilder.create();
                         alertD.show();
